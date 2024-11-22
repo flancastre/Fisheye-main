@@ -1,20 +1,21 @@
 export default class PhotographerMedias {
-    constructor(photographer, medias) {
-        this.photographer = photographer;
-        this.medias = medias;
-    };
+  constructor(photographer, medias) {
+    this.photographer = photographer;
+    this.medias = medias;
+  }
 
-    createPhotographerMedias() {
-        const profilePageContent = document.querySelector(".main_content_medias");
-        const content = `
+  createPhotographerMedias() {
+    const profilePageContent = document.querySelector(".main_content_medias");
+    const content = `
             <section class="gallery">
-                ${this.medias.map(media => {
-            const mediaContent = media.image
-                ? ` <img class="gallery_thumbnail" src="./assets/images/photographers/samplePhotos-Small/${this.photographer.name}/${media.image}" alt="${media.alt}">`
-                : ` <video class="gallery_thumbnail" aria-label="${media.alt}">
+                ${this.medias
+                  .map((media) => {
+                    const mediaContent = media.image
+                      ? ` <img class="gallery_thumbnail" src="./assets/images/photographers/samplePhotos-Small/${this.photographer.name}/${media.image}" alt="${media.alt}">`
+                      : ` <video class="gallery_thumbnail" aria-label="${media.alt}">
                         <source src="./assets/images/photographers/samplePhotos-Small/${this.photographer.name}/${media.video}" type="video/mp4">
                     </video>`;
-            return `
+                    return `
                     <article class="gallery_card">                           
                         <a href="#" data-media=${media.id} role="link" aria-label="View media large">
                             <figure>${mediaContent}</figure>
@@ -30,7 +31,8 @@ export default class PhotographerMedias {
                         </figcaption>
                     </article>
                 `;
-        }).join("")}
+                  })
+                  .join("")}
             </section >
             <aside>
                 <p class="photographer_Likes">
@@ -41,7 +43,7 @@ export default class PhotographerMedias {
             </aside>
         `;
 
-        profilePageContent.innerHTML = content;
-        return content;
-    };
-};
+    profilePageContent.innerHTML = content;
+    return content;
+  }
+}
